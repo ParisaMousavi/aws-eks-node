@@ -9,3 +9,16 @@ variable "node_group_name" {
 variable "subnet_ids" {
   type = list(string)
 }
+
+variable "instance_types" {
+  type = list(string)
+}
+
+variable "disk_size" {
+  type = number
+}
+
+variable "additional_tags" {
+  default = {}
+  type    = map(string)
+}

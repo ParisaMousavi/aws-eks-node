@@ -10,6 +10,8 @@ resource "aws_eks_node_group" "this" {
   node_group_name = var.node_group_name
   node_role_arn   = aws_iam_role.this.arn
   subnet_ids      = var.subnet_ids
+  instance_types  = var.instance_types
+  disk_size       = var.disk_size
   scaling_config {
     desired_size = 1
     max_size     = 2
@@ -18,6 +20,12 @@ resource "aws_eks_node_group" "this" {
   update_config {
     max_unavailable = 1
   }
+    tags = merge(
+    var.additional_tags,
+    {
+      created-by = "iac-tf"
+    },
+  )
   # Optional: Allow external changes without Terraform plan difference
   lifecycle {
     ignore_changes = [scaling_config[0].desired_size]
