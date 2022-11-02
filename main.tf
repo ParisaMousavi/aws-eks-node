@@ -8,7 +8,7 @@ resource "aws_eks_node_group" "this" {
   ]
   cluster_name    = var.cluster_name
   node_group_name = var.node_group_name
-  node_role_arn   = var.node_role_arn
+  node_role_arn   = aws_iam_role.this.arn
   subnet_ids      = var.subnet_ids
   scaling_config {
     desired_size = 1
@@ -25,7 +25,7 @@ resource "aws_eks_node_group" "this" {
 }
 
 resource "aws_iam_role" "this" {
-  name               = "${var.name}-worker-role"
+  name               = "${var.node_group_name}-worker-role"
   description        = "Allows EC2 instances to call AWS services on your behalf."
   assume_role_policy = <<POLICY
 {
