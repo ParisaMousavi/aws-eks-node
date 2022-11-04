@@ -14,7 +14,7 @@ resource "aws_eks_node_group" "this" {
   disk_size       = var.disk_size
   scaling_config {
     desired_size = 1
-    max_size     = 2
+    max_size     = 5
     min_size     = 1
   }
   update_config {
