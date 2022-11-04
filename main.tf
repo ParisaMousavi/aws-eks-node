@@ -27,9 +27,9 @@ resource "aws_eks_node_group" "this" {
     },
   )
   # Optional: Allow external changes without Terraform plan difference
-  lifecycle {
-    ignore_changes = [scaling_config[0].desired_size]
-  }
+  # lifecycle {
+  #   ignore_changes = [scaling_config[0].desired_size]
+  # }
 }
 
 resource "aws_iam_role" "this" {
