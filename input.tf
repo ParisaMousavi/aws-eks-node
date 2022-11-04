@@ -22,3 +22,11 @@ variable "additional_tags" {
   default = {}
   type    = map(string)
 }
+
+variable "scaling_config" {
+  type = object({
+    desired_size = number
+    max_size     = number
+    min_size     = number
+  })
+}

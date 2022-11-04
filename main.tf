@@ -13,14 +13,14 @@ resource "aws_eks_node_group" "this" {
   instance_types  = var.instance_types
   disk_size       = var.disk_size
   scaling_config {
-    desired_size = 1
-    max_size     = 5
-    min_size     = 1
+    desired_size = var.scaling_config.desired_size
+    max_size     = var.scaling_config.max_size
+    min_size     = var.scaling_config.min_size
   }
   update_config {
     max_unavailable = 1
   }
-    tags = merge(
+  tags = merge(
     var.additional_tags,
     {
       created-by = "iac-tf"
